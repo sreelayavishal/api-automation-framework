@@ -67,17 +67,15 @@ public class CreateBookingTests extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Description("POST /booking without firstname should return 400 or 500")
     public void createBooking_missingFirstname_shouldReturnError() {
-        String incompletePayload = """
-                {
-                  "lastname": "Smith",
-                  "totalprice": 500,
-                  "depositpaid": true,
-                  "bookingdates": {
-                    "checkin": "2025-01-01",
-                    "checkout": "2025-01-05"
-                  }
-                }
-                """;
+        String incompletePayload = "{\n" +
+            "  \"lastname\": \"Smith\",\n" +
+            "  \"totalprice\": 500,\n" +
+            "  \"depositpaid\": true,\n" +
+            "  \"bookingdates\": {\n" +
+            "    \"checkin\": \"2025-01-01\",\n" +
+            "    \"checkout\": \"2025-01-05\"\n" +
+            "  }\n" +
+            "}";
 
         given()
             .spec(requestSpec)
@@ -95,18 +93,16 @@ public class CreateBookingTests extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Description("POST /booking where checkout < checkin should return an error")
     public void createBooking_invalidDates_shouldReturnError() {
-        String invalidDatesPayload = """
-                {
-                  "firstname": "Test",
-                  "lastname": "User",
-                  "totalprice": 300,
-                  "depositpaid": false,
-                  "bookingdates": {
-                    "checkin": "2025-06-10",
-                    "checkout": "2025-06-01"
-                  }
-                }
-                """;
+        String invalidDatesPayload = "{\n" +
+            "  \"firstname\": \"Test\",\n" +
+            "  \"lastname\": \"User\",\n" +
+            "  \"totalprice\": 300,\n" +
+            "  \"depositpaid\": false,\n" +
+            "  \"bookingdates\": {\n" +
+            "    \"checkin\": \"2025-06-10\",\n" +
+            "    \"checkout\": \"2025-06-01\"\n" +
+            "  }\n" +
+            "}";
 
         given()
             .spec(requestSpec)

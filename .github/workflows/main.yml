@@ -23,10 +23,12 @@ jobs:
           cache: maven
 
       - name: Run TestNG suite
+        working-directory: api-automation-framework
         run: mvn clean test -Dsurefire.suiteXmlFiles=testng.xml
 
       - name: Generate Allure Report
         if: always()
+        working-directory: api-automation-framework
         run: mvn allure:report
 
       - name: Upload Allure Report
@@ -34,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: target/site/allure-maven-plugin
+          path: api-automation-framework/target/site/allure-maven-plugin
