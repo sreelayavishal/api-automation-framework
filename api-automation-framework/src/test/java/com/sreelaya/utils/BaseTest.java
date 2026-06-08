@@ -35,7 +35,7 @@ public class BaseTest {
         requestSpec = new RequestSpecBuilder()
                 .setBaseUri(config.getBaseUrl())
                 .setContentType(ContentType.JSON)
-                .setAccept(ContentType.JSON)
+                .setAccept("application/json")        // exact value required by restful-booker parser
                 .addFilter(new AllureRestAssured())   // attaches req/resp to Allure report
                 .log(LogDetail.ALL)
                 .build();
